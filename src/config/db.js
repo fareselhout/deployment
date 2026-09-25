@@ -2,11 +2,10 @@ const pg = require("pg");
 const { Pool } = pg;
 
 const pool = new Pool({
-    user: process.env.USER,
-    host: process.env.HOST,
-    database: process.env.DATABASE,
-    port: process.env.DBPORT,
-    password: process.env.PASSWORD,
+   connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 pool.on("connect", () => console.log("Connection pool established with database..."));
